@@ -1,9 +1,17 @@
 #include "Shield.h"
 #include "ShieldStandingState.h"
+#include "ShieldRunningState.h"
+#include "ShieldJumpingState.h"
+#include "ShieldTopDefState.h"
+#include "ShieldAttackState.h"
 
 Shield::Shield()
 {
-    mAnimationStanding = new Animation("Resources/Captain/shield/run-standing.png", 1, 1, 1, 0);
+	mAnimationStanding = new Animation("Resources/Captain/shield/standing.png", 1, 1, 1, 0);
+	mAnimationJumping = new Animation("Resources/Captain/shield/jumping.png", 1, 1, 1, 0);
+	mAnimationRunning = new Animation("Resources/Captain/shield/run.png", 4, 1, 4, 0.15f);
+	mAnimationTopDef = new Animation("Resources/Captain/shield/top-def.png", 1, 1, 1, 0);
+	mAnimationAttack = new Animation("Resources/Captain/shield/top-def.png", 1, 1, 1, 0);
    
 	mIsJumpKeyPressed = false;
 	mCurrentAnimation = NULL;
@@ -22,14 +30,17 @@ Shield::~Shield()
 
 void Shield::Update(float dt)
 {    
-    mCurrentAnimation->Update(dt);
+	if (mCurrentState != ShieldState::StateName::Jumping2)
+	{
+		mCurrentAnimation->Update(dt);
 
-    if (this->mShieldData->state)
-    {
-        this->mShieldData->state->Update(dt);
-    }
+		if (this->mShieldData->state)
+		{
+			this->mShieldData->state->Update(dt);
+		}
 
-    Entity::Update(dt);
+		Entity::Update(dt);
+	}
 }
 
 void Shield::HandleKeyboard(std::map<int, bool> keys)
@@ -54,25 +65,38 @@ void Shield::SetReverse(bool flag)
     mCurrentReverse = flag;
 }
 
+bool Shield::GetReverse()
+{
+	return mCurrentReverse;
+}
+
 void Shield::SetCamera(Camera *camera)
 {
 	this->mCamera = camera;
 }
 
+bool Shield::IsNeedCheck()
+{
+	return mCurrentState != ShieldState::StateName::Jumping2;
+}
+
 void Shield::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DXVECTOR2 transform, float angle, D3DXVECTOR2 rotationCenter, D3DXCOLOR colorKey)
 {
-	mCurrentAnimation->FlipVertical(mCurrentReverse);
-	mCurrentAnimation->SetPosition(this->GetPosition());
-	if (mCamera)
+	if (mCurrentState != ShieldState::StateName::Jumping2)
 	{
-		D3DXVECTOR2 trans = D3DXVECTOR2(GameGlobal::GetWidth() / 2 - mCamera->GetPosition().x,
-			GameGlobal::GetHeight() / 2 - mCamera->GetPosition().y);
+		mCurrentAnimation->FlipVertical(mCurrentReverse);
+		mCurrentAnimation->SetPosition(this->GetPosition());
+		if (mCamera)
+		{
+			D3DXVECTOR2 trans = D3DXVECTOR2(GameGlobal::GetWidth() / 2 - mCamera->GetPosition().x,
+				GameGlobal::GetHeight() / 2 - mCamera->GetPosition().y);
 
-		mCurrentAnimation->Draw(D3DXVECTOR3(posX, posY, 0), sourceRect, scale, trans, angle, rotationCenter, colorKey);
-	}
-	else
-	{
-		mCurrentAnimation->Draw(D3DXVECTOR3(posX, posY, 0));
+			mCurrentAnimation->Draw(D3DXVECTOR3(posX, posY, 0), sourceRect, scale, trans, angle, rotationCenter, colorKey);
+		}
+		else
+		{
+			mCurrentAnimation->Draw(D3DXVECTOR3(posX, posY, 0));
+		}
 	}
 
 }
@@ -92,7 +116,30 @@ void Shield::SetState(ShieldState *newState)
 
     mCurrentState = newState->GetState();
 }
-
+void Shield::SetState(ShieldState::StateName newState)
+{
+	switch(newState)
+	{
+		case ShieldState::Standing:
+			this->SetState(new ShieldStandingState(this->mShieldData));
+			break;
+		case ShieldState::Running:
+			this->SetState(new ShieldRunningState(this->mShieldData));
+			break;
+		case ShieldState::Jumping:
+			this->SetState(new ShieldJumpingState(this->mShieldData));
+			break;
+		case ShieldState::TopDef:
+			this->SetState(new ShieldTopDefState(this->mShieldData));
+			break;
+		case ShieldState::Attack:
+			this->SetState(new ShieldAttackState(this->mShieldData));
+			break;
+		case ShieldState::Jumping2:
+			mCurrentState = ShieldState::Jumping2;
+			break;
+	}
+}
 RECT Shield::GetBound()
 {
     RECT rect;
@@ -110,6 +157,17 @@ void Shield::changeAnimation(ShieldState::StateName state)
 	{
 		case ShieldState::Standing:
 			mCurrentAnimation = mAnimationStanding;
+			break;
+		case ShieldState::Running:
+			mCurrentAnimation = mAnimationRunning;
+			break;
+		case ShieldState::Jumping:
+			mCurrentAnimation = mAnimationJumping;
+			break;
+		case ShieldState::TopDef:
+			mCurrentAnimation = mAnimationTopDef;
+		case ShieldState::Attack:
+			mCurrentAnimation = mAnimationAttack;
 			break;
 	}
 

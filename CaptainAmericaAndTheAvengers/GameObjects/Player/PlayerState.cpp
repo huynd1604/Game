@@ -24,3 +24,7 @@ void PlayerState::HandleKeyboard(std::map<int, bool> keys)
 {
 
 }
+
+void PlayerState::OnCollision(Entity::EntityTypes type, eDirection, float)
+{
+}

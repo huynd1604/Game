@@ -9,7 +9,9 @@
 #include "../GameComponents/Sprite.h"
 #include "../GameComponents/Animation.h"
 #include "../GameComponents/GameMap.h"
+#include "../GameComponents/GameDebugDraw.h"
 #include "../GameComponents/Camera.h"
+#include "../GameComponents/GameGrid.h"
 #include "../GameObjects/Player/Player.h"
 
 class DemoScene : public Scene
@@ -29,9 +31,11 @@ protected:
     GameMap *mMap;
     Camera *mCamera;
     Player *mPlayer;
+	std::vector<GameGrid*> listGrid;
+	std::vector<Entity*> listGameObject;
 
     float mTimeCounter;
-
+	GameDebugDraw *mDebugDraw;
     std::map<int, bool> keys;
 	void CheckCameraAndWorldMap();
 };

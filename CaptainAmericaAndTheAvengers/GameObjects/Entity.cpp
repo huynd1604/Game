@@ -116,3 +116,17 @@ void Entity::AddVy(float vy)
 {
     this->vy += vy;
 }
+float Entity::GetOldPosX()
+{
+	return oldPosX;
+}
+float Entity::GetOldPosY()
+{
+	return oldPosY;
+}
+
+void Entity::SetOldPosition(D3DXVECTOR3 pos)
+{
+	this->oldPosX = pos.x;
+	this->oldPosY = pos.y;
+}

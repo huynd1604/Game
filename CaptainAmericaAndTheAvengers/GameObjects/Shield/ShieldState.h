@@ -9,6 +9,12 @@ public:
     enum StateName
     {
         Standing,
+		Running,
+		Jumping,
+		Jumping2,
+		TopDef,
+		Attack,
+		AttackSitting,
         Die
     };
 

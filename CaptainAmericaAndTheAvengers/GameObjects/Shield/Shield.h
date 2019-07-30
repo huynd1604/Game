@@ -26,7 +26,9 @@ public:
 
     void Draw(D3DXVECTOR3 position = D3DXVECTOR3(), RECT sourceRect = RECT(), D3DXVECTOR2 scale = D3DXVECTOR2(), D3DXVECTOR2 transform = D3DXVECTOR2(), float angle = 0, D3DXVECTOR2 rotationCenter = D3DXVECTOR2(), D3DXCOLOR colorKey = D3DCOLOR_XRGB(255, 255, 255));
 
-    void SetState(ShieldState *newState);
+	void SetState(ShieldState *newState);
+
+	void SetState(ShieldState::StateName newState);
 
     MoveDirection getMoveDirection();
 
@@ -44,9 +46,11 @@ public:
     void OnKeyUp(int key);
 
     //true thi se lat nguoc anh theo truc y
-    void SetReverse(bool flag);
+	void SetReverse(bool flag);
+	bool GetReverse();
 	bool mIsJumpKeyPressed;
 	void SetCamera(Camera *camera);
+	bool IsNeedCheck();
 protected:
     ShieldData *mShieldData;
 	Camera      *mCamera;
@@ -55,7 +59,7 @@ protected:
 				*mAnimationStanding,
 				*mAnimationRunning,
 				*mAnimationJumping,
-				*mAnimationAttackNormal,
+				*mAnimationAttack,
 				*mAnimationSitting,
 				*mAnimationAttackShield,
 				*mAnimationSittingAttack,

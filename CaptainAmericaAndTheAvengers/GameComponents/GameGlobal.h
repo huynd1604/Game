@@ -4,13 +4,14 @@
 #include <d3dx9.h>
 #include <d3d9.h>
 #include <Windows.h>
-
+//#include "../GameObjects/Player/Player.h"
 class GameGlobal
 {
 public:
     GameGlobal();
     ~GameGlobal();
-
+	static bool isCollide(RECT rect1, RECT rect2);
+	
     static HINSTANCE GetCurrentHINSTACE();
     static HWND getCurrentHWND();
 
@@ -34,7 +35,8 @@ public:
 	static bool isGameRunning; //trang thai xem game co dang chay khong
 	static float MaxJum;
 	static float MinJum;
-
+	static float Vshield;
+	//static Player* MainPlayer;
 private:
     static HINSTANCE mHInstance; //hInstance của windows hiện tại
     static HWND mHwnd; // hwnd hiện tại

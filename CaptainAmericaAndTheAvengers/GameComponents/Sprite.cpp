@@ -99,7 +99,7 @@ int Sprite::GetHeight()
     return mHeight;
 }
 
-void Sprite::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DXVECTOR2 transform, float angle, D3DXVECTOR2 rotationCenter, D3DXCOLOR colorKey)
+void Sprite::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DXVECTOR2 transform, float angle, D3DXVECTOR2 rotationCenter, D3DXCOLOR colorKey, D3DXVECTOR3 center)
 {
     D3DXVECTOR3 inPosition = mPosition;
     RECT inSourceRect = mSourceRect;
@@ -132,16 +132,40 @@ void Sprite::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DX
     D3DXMATRIX oldMatrix;
     mSpriteHandler->GetTransform(&oldMatrix);
     mSpriteHandler->SetTransform(&mMatrix);
-
-    D3DXVECTOR3 center = D3DXVECTOR3(mWidth / 2, mHeight / 2, 0);
+	D3DXVECTOR3 spriteCenter = D3DXVECTOR3(mWidth / 2, mHeight / 2, 0);
+	if (center != D3DXVECTOR3())
+		spriteCenter = center;
 
     mSpriteHandler->Draw(mTexture,
         &inSourceRect,
-        &center,
+        &spriteCenter,
         &inPosition,
         D3DCOLOR_ARGB(255, 255, 255, 255)); // nhung pixel nao co mau trang se duoc to mau nay len
 
     mSpriteHandler->SetTransform(&oldMatrix); // set lai matrix cu~ de Sprite chi ap dung transfrom voi class nay
+}
+
+void Sprite::DrawRect(RECT rect, D3DXVECTOR2 transform)
+{
+	D3DXMATRIX              Matrix;
+	D3DXMatrixTransformation2D(&Matrix, NULL, 0, NULL, NULL,
+		0, &transform);
+	// Ve 4 duong thang
+	LPD3DXLINE line;
+	D3DXCreateLine(GameGlobal::GetCurrentDevice(), &line);
+	D3DXVECTOR3 lines[] = {
+		D3DXVECTOR3((FLOAT)rect.left, (FLOAT)rect.top,0),
+		D3DXVECTOR3((FLOAT)rect.right, (FLOAT)rect.top,0),
+		D3DXVECTOR3((FLOAT)rect.right, (FLOAT)rect.bottom,0),
+		D3DXVECTOR3((FLOAT)rect.left, (FLOAT)rect.bottom,0),
+		D3DXVECTOR3((FLOAT)rect.left, (FLOAT)rect.top,0)
+	};
+
+	line->Begin();
+	line->DrawTransform(lines, 5, &Matrix, D3DCOLOR_ARGB(255, 255, 0, 0));
+	line->End();
+
+	line->Release();
 }
 
 void Sprite::SetSourceRect(RECT rect)

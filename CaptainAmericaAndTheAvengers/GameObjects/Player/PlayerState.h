@@ -1,6 +1,7 @@
 #pragma once
 #include "PlayerData.h"
 #include "../Entity.h"
+#include "../../GameComponents/GameColision.h"
 #include <map>
 
 class PlayerState
@@ -18,6 +19,10 @@ public:
 		AttackSitting,
 		Sitting,
 		Jumping2,
+		Surfing,
+		Swim,
+		Swing,
+		ButtomDef,
         Die
     };
 
@@ -26,7 +31,7 @@ public:
     virtual void Update(float dt);
 
     virtual void HandleKeyboard(std::map<int, bool> keys);
-
+	virtual void OnCollision(Entity::EntityTypes type, eDirection, float);
     //ham thuan ao bat buoc phai ke thua
     virtual StateName GetState() = 0;
 

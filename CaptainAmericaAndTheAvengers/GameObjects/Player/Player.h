@@ -5,6 +5,7 @@
 #include "../../GameComponents/Animation.h"
 #include "../../GameComponents/GameGlobal.h"
 #include "../../GameComponents/Camera.h"
+#include "../../GameComponents/GameColision.h"
 #include "../Entity.h"
 #include "PlayerData.h"
 #include "PlayerState.h"
@@ -14,7 +15,8 @@
 class Player : public Entity
 {
 public:
-    Player();
+	static Player*    instance;
+	static Player *GetInstance();
     ~Player();
 
 	Shield *mShield;
@@ -36,6 +38,11 @@ public:
     RECT GetBound();     
 	int GetAnimationIndex();
 	bool IsLastAnimation();
+	void SetPosition(float x, float y);
+	void SetVx(float vx);
+	void AddVx(float vx);
+	void SetVy(float vy);
+	void AddVy(float vy);
     PlayerState::StateName Player::getState();
 
     //xu ly input
@@ -45,15 +52,17 @@ public:
     void OnKeyPressed(int key);
 
     void OnKeyUp(int key);
-
+	void OnColision(EntityTypes type, eDirection,float);
     //true thi se lat nguoc anh theo truc y
     void SetReverse(bool flag);
 	bool mIsJumpKeyPressed;
 	void SetCamera(Camera *camera);
+	D3DXVECTOR3 GetShieldAdd();
+	PlayerData *mPlayerData;
 protected:
-    PlayerData *mPlayerData;
+	Player();
 	Camera      *mCamera;
-
+	float mSx, mSy;
 	Animation   *mCurrentAnimation,
 				*mAnimationStanding,
 				*mAnimationRunning,
@@ -63,7 +72,12 @@ protected:
 				*mAnimationAttackShield,
 				*mAnimationSittingAttack,
 				*mAnimationJumping2,
-				*mAnimationTopDef;
+				*mAnimationTopDef,
+				*mAnimationSurfing,
+				*mAnimationSwim,
+				*mAnimationButtomDef,
+				*mAnimationSwing
+		;
 
     void changeAnimation(PlayerState::StateName state);
 

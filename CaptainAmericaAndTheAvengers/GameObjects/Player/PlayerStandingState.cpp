@@ -10,9 +10,10 @@ PlayerStandingState::PlayerStandingState(PlayerData *playerData)
     this->mPlayerData = playerData;
     this->mPlayerData->player->SetVx(0);
     this->mPlayerData->player->SetVy(0);
-	this->mPlayerData->player->mShield->SetPosition(this->mPlayerData->player->GetPosition());
-	this->mPlayerData->player->mShield->SetVx(0);
-	this->mPlayerData->player->mShield->SetVy(0);
+	if (this->mPlayerData->player->mShield->getState() != ShieldState::StateName::Attack)
+	{
+		this->mPlayerData->player->mShield->SetState(ShieldState::StateName::Standing);
+	}
 
 }
 

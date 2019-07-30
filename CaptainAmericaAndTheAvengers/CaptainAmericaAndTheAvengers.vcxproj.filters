@@ -26,9 +26,6 @@
     <Filter Include="FrameWork\Scenes">
       <UniqueIdentifier>{38454f69-4d64-4130-ae8e-c136925d0f50}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FrameWork\MapReader">
-      <UniqueIdentifier>{7199a57f-d6cd-4b76-925a-396c7d26febc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="FrameWork\GameObjects">
       <UniqueIdentifier>{0ad4cd95-31c2-4f7d-934a-ac80a4dd866c}</UniqueIdentifier>
     </Filter>
@@ -72,66 +69,6 @@
     </ClCompile>
     <ClCompile Include="GameComponents\GameMap.cpp">
       <Filter>FrameWork\GameComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="MapReader\base64.cpp">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClCompile>
-    <ClCompile Include="MapReader\miniz.c">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClCompile>
-    <ClCompile Include="MapReader\tinyxml2.cpp">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClCompile>
-    <ClCompile Include="MapReader\TmxEllipse.cpp">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClCompile>
-    <ClCompile Include="MapReader\TmxImage.cpp">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClCompile>
-    <ClCompile Include="MapReader\TmxImageLayer.cpp">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClCompile>
-    <ClCompile Include="MapReader\TmxLayer.cpp">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClCompile>
-    <ClCompile Include="MapReader\TmxMap.cpp">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClCompile>
-    <ClCompile Include="MapReader\TmxObject.cpp">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClCompile>
-    <ClCompile Include="MapReader\TmxObjectGroup.cpp">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClCompile>
-    <ClCompile Include="MapReader\TmxPolygon.cpp">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClCompile>
-    <ClCompile Include="MapReader\TmxPolyline.cpp">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClCompile>
-    <ClCompile Include="MapReader\TmxPropertySet.cpp">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClCompile>
-    <ClCompile Include="MapReader\TmxTerrain.cpp">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClCompile>
-    <ClCompile Include="MapReader\TmxTerrainArray.cpp">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClCompile>
-    <ClCompile Include="MapReader\TmxTile.cpp">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClCompile>
-    <ClCompile Include="MapReader\TmxTileLayer.cpp">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClCompile>
-    <ClCompile Include="MapReader\TmxTileOffset.cpp">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClCompile>
-    <ClCompile Include="MapReader\TmxTileset.cpp">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClCompile>
-    <ClCompile Include="MapReader\TmxUtil.cpp">
-      <Filter>FrameWork\MapReader</Filter>
     </ClCompile>
     <ClCompile Include="GameComponents\Camera.cpp">
       <Filter>FrameWork\GameComponents</Filter>
@@ -190,6 +127,39 @@
     <ClCompile Include="GameObjects\Shield\ShieldStandingState.cpp">
       <Filter>FrameWork\GameObjects\Shield</Filter>
     </ClCompile>
+    <ClCompile Include="GameObjects\Shield\ShieldRunningState.cpp">
+      <Filter>FrameWork\GameObjects\Shield</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Shield\ShieldJumpingState.cpp">
+      <Filter>FrameWork\GameObjects\Shield</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Shield\ShieldTopDefState.cpp">
+      <Filter>FrameWork\GameObjects\Shield</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Shield\ShieldAttackState.cpp">
+      <Filter>FrameWork\GameObjects\Shield</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Player\PlayerButtomDefState.cpp">
+      <Filter>FrameWork\GameObjects\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Player\PlayerSurfingState.cpp">
+      <Filter>FrameWork\GameObjects\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Player\PlayerSwimState.cpp">
+      <Filter>FrameWork\GameObjects\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Player\PlayerSwingState.cpp">
+      <Filter>FrameWork\GameObjects\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponents\GameDebugDraw.cpp">
+      <Filter>FrameWork\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponents\GameGrid.cpp">
+      <Filter>FrameWork\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponents\GameColision.cpp">
+      <Filter>FrameWork\GameComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameComponents\Game.h">
@@ -218,75 +188,6 @@
     </ClInclude>
     <ClInclude Include="GameComponents\GameMap.h">
       <Filter>FrameWork\GameComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="MapReader\base64.h">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClInclude>
-    <ClInclude Include="MapReader\tinyxml2.h">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClInclude>
-    <ClInclude Include="MapReader\TmxEllipse.h">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClInclude>
-    <ClInclude Include="MapReader\TmxImage.h">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClInclude>
-    <ClInclude Include="MapReader\TmxImageLayer.h">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClInclude>
-    <ClInclude Include="MapReader\TmxLayer.h">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClInclude>
-    <ClInclude Include="MapReader\TmxMap.h">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClInclude>
-    <ClInclude Include="MapReader\TmxMapTile.h">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClInclude>
-    <ClInclude Include="MapReader\TmxObject.h">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClInclude>
-    <ClInclude Include="MapReader\TmxObjectGroup.h">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClInclude>
-    <ClInclude Include="MapReader\TmxPoint.h">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClInclude>
-    <ClInclude Include="MapReader\TmxPolygon.h">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClInclude>
-    <ClInclude Include="MapReader\TmxPolyline.h">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClInclude>
-    <ClInclude Include="MapReader\TmxPropertySet.h">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClInclude>
-    <ClInclude Include="MapReader\TmxTerrain.h">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClInclude>
-    <ClInclude Include="MapReader\TmxTerrainArray.h">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClInclude>
-    <ClInclude Include="MapReader\TmxTile.h">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClInclude>
-    <ClInclude Include="MapReader\TmxTileLayer.h">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClInclude>
-    <ClInclude Include="MapReader\TmxTileOffset.h">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClInclude>
-    <ClInclude Include="MapReader\TmxTileset.h">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClInclude>
-    <ClInclude Include="MapReader\TmxUtil.h">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClInclude>
-    <ClInclude Include="MapReader\zconf.h">
-      <Filter>FrameWork\MapReader</Filter>
-    </ClInclude>
-    <ClInclude Include="MapReader\zlib.h">
-      <Filter>FrameWork\MapReader</Filter>
     </ClInclude>
     <ClInclude Include="GameComponents\Camera.h">
       <Filter>FrameWork\GameComponents</Filter>
@@ -348,12 +249,42 @@
     <ClInclude Include="GameObjects\Shield\ShieldStandingState.h">
       <Filter>FrameWork\GameObjects\Shield</Filter>
     </ClInclude>
+    <ClInclude Include="GameObjects\Shield\ShieldRunningState.h">
+      <Filter>FrameWork\GameObjects\Shield</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Shield\ShieldJumpingState.h">
+      <Filter>FrameWork\GameObjects\Shield</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Shield\ShieldTopDefState.h">
+      <Filter>FrameWork\GameObjects\Shield</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Shield\ShieldAttackState.h">
+      <Filter>FrameWork\GameObjects\Shield</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Player\PlayerButtomDefState.h">
+      <Filter>FrameWork\GameObjects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Player\PlayerSurfingState.h">
+      <Filter>FrameWork\GameObjects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Player\PlayerSwimState.h">
+      <Filter>FrameWork\GameObjects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Player\PlayerSwingState.h">
+      <Filter>FrameWork\GameObjects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\GameDebugDraw.h">
+      <Filter>FrameWork\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\GameGrid.h">
+      <Filter>FrameWork\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\GameColision.h">
+      <Filter>FrameWork\GameComponents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
-    <None Include="MapReader\Tmx.h.in">
-      <Filter>FrameWork\MapReader</Filter>
-    </None>
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
   </ItemGroup>

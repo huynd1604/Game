@@ -10,6 +10,7 @@ bool GameGlobal::isGameRunning = true;
 IDirect3DSurface9* GameGlobal::backSurface = nullptr;
 float GameGlobal::MaxJum = 0.0f;
 float GameGlobal::MinJum = 0.0f;
+float GameGlobal::Vshield = 220.0f;
 GameGlobal::GameGlobal()
 {
 
@@ -18,6 +19,16 @@ GameGlobal::GameGlobal()
 
 GameGlobal::~GameGlobal()
 {
+}
+
+bool GameGlobal::isCollide(RECT rect1, RECT rect2)
+{
+	if (rect1.left > rect2.right || rect1.right < rect2.left || rect1.top > rect2.bottom || rect1.bottom < rect2.top)
+	{
+		return false;
+	}
+
+	return true;
 }
 
 void GameGlobal::SetCurrentDevice(LPDIRECT3DDEVICE9 device)

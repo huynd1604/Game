@@ -8,7 +8,11 @@ PlayerFallingState::PlayerFallingState(PlayerData *playerData)
     this->mPlayerData = playerData;
     acceleratorY = 10.0f;
     acceleratorX = 3.0f;
-
+	mPlayerData->player->SetVy(130);
+	if (this->mPlayerData->player->mShield->getState() != ShieldState::StateName::Attack)
+	{
+		this->mPlayerData->player->mShield->SetState(ShieldState::StateName::Jumping);
+	}
     if (this->mPlayerData->player->GetVx() == 0)
     {
         allowMoveX = false;
@@ -26,21 +30,20 @@ PlayerFallingState::~PlayerFallingState()
 
 void PlayerFallingState::Update(float dt)
 {
-    this->mPlayerData->player->AddVy(acceleratorY);
+    //this->mPlayerData->player->AddVy(acceleratorY);
 
-    if (mPlayerData->player->GetVy() > GameGlobal::MaxJum)
+   /* if (mPlayerData->player->GetVy() > GameGlobal::MaxJum)
     {
         mPlayerData->player->SetVy(GameGlobal::MaxJum);
-    }
-	if (this->mPlayerData->player->GetPosition().y >= 415)
+    }*/
+	/*if (this->mPlayerData->player->GetPosition().y >= 415)
 	{
-		this->mPlayerData->player->SetPosition(D3DXVECTOR3(
+		this->mPlayerData->player->SetPosition(
 			this->mPlayerData->player->GetPosition().x,
-			415,
-			0
-		));
+			415
+		);
 		this->mPlayerData->player->SetState(new PlayerStandingState(this->mPlayerData));
-	}
+	}*/
 }
 
 void PlayerFallingState::HandleKeyboard(std::map<int, bool> keys)
@@ -81,6 +84,26 @@ void PlayerFallingState::HandleKeyboard(std::map<int, bool> keys)
     {
         isLeftOrRightKeyPressed = false;    
     }
+}
+
+void PlayerFallingState::OnCollision(Entity::EntityTypes type, eDirection dir, float dt)
+{
+	switch (type)
+	{
+	case Entity::None:
+		if (dir == eDirection::DOWN)
+		{
+			//mPlayerData->player->AddPosition(D3DXVECTOR2(0, -dt));
+			this->mPlayerData->player->SetState(new PlayerStandingState(this->mPlayerData));
+		}
+		else if (dir == eDirection::RIGHT || dir == eDirection::LEFT)
+		{
+			mPlayerData->player->SetVx(0);
+		}
+		break;
+	default:
+		break;
+	}
 }
 
 PlayerState::StateName PlayerFallingState::GetState()

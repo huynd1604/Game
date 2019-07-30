@@ -11,6 +11,7 @@ public:
     void Update(float dt);
 
     void HandleKeyboard(std::map<int, bool> keys);
+	void OnCollision(Entity::EntityTypes type, eDirection, float);
 
     virtual StateName GetState();
 

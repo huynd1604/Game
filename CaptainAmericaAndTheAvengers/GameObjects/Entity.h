@@ -12,18 +12,6 @@ public:
 
     Entity();
 
-    enum SideCollisions
-    {
-        Left, //0
-        Right, //1
-        Top, //2
-        Bottom, //3
-        TopLeft, //4
-        TopRight, //5
-        BottomLeft, //6
-        BottomRight, //7
-        NotKnow
-    };
 
     enum EntityTypes
     {
@@ -70,13 +58,19 @@ public:
 
     virtual void Update(float dt);
 
+	virtual float GetOldPosX();
+
+	virtual float GetOldPosY();
+
+	virtual void SetOldPosition(D3DXVECTOR3 pos);
 protected:
 
     //duoc goi khi set position cua Entity, dung cho ke thua
     virtual void OnSetPosition(D3DXVECTOR3 pos);
 
     //vi tri tam position x va y
-    float posX, posY;
+	float posX, posY;
+	float oldPosX, oldPosY;
 
     //phan toc vx, vy
     float vx, vy;

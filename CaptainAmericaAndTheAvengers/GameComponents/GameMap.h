@@ -5,18 +5,20 @@
 #include <d3dx9.h>
 #include <d3d9.h>
 #include <vector>
+#include <set>
+#include <vector>
 
 #include "Sprite.h"
 #include "../MapReader/Tmx.h.in"
 #include "GameGlobal.h"
 #include "../GameComponents/Camera.h"
+#include "../GameDefines/GameDefine.h"
 
 class GameMap
 {
 public:
-    GameMap(char* filePath);
+	GameMap(char* filePath, char* fileTileSet = "");
 
-    Tmx::Map* GetMap();
 
     int GetWidth();
     int GetHeight();
@@ -30,12 +32,14 @@ public:
     ~GameMap();
 
 private:
-    void LoadMap(char* filePath);
 
+    void LoadMap(char* filePath, char* fileTileSet = "");
     bool isContain(RECT rect1, RECT rect2);
 
-    Tmx::Map                        *mMap;
-    std::map<int, Sprite*>          mListTileset;
+	Sprite* mapSprite;
+	int** mMatrixMap;
+	int mWidth, mHeight;
+	int mColumn, mRow;
     Camera *mCamera;
 };
 
